@@ -1,0 +1,48 @@
+﻿<Window x:Class="MyBankAdmin.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyBankAdmin"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.Row="0" Grid.Column="0" Name="UsersListBox" Margin="10" DisplayMemberPath="UserName" SelectionChanged="UsersListBox_SelectionChanged" />
+        <Grid Grid.Row="0" Grid.Column="1" Margin="10" Name="UserItemsGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="4*" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Id" />
+            <TextBox Grid.Row="0" Grid.Column="1" Name="IdTextBox" Margin="5" Text="{Binding Id}" />
+
+            <Label Grid.Row="1" Grid.Column="0" Content="Name" />
+            <TextBox Grid.Row="1" Grid.Column="1" Name="NameTextBox" Margin="5" Text="{Binding UserName}" />
+
+            <Label Grid.Row="2" Grid.Column="0" Content="E-Mail" />
+            <TextBox Grid.Row="2" Grid.Column="1" Name="EmailTextBox" Margin="5" Text="{Binding Email}" />
+
+            <Label Grid.Row="3" Grid.Column="0" Content="PhoneNumber" />
+            <TextBox Grid.Row="3" Grid.Column="1" Name="PhoneTextBox" Margin="5" Text="{Binding PhoneNumber}" />
+
+            <Label Grid.Row="4" Grid.Column="0" Content="Account" />
+            <DataGrid Grid.Row="4" Grid.Column="1" Name="AccountsDataGrid" Margin="5" AutoGenerateColumns="False" ItemsSource="{Binding BankAccounts}" SelectionChanged="AccountsDataGrid_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=Number}" Header="Account Number" Width="*" />
+                    <DataGridTextColumn Binding="{Binding Path=Balance, ConverterCulture='en-US', StringFormat={}{0:C}}" Header="Balance" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>
